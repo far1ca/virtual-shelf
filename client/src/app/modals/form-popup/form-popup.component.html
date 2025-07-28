@@ -1,0 +1,53 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Add book</h4>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="close()"
+  ></button>
+</div>
+<div class="modal-body">
+  <form #bookForm="ngForm" (ngSubmit)="submitForm(bookForm)">
+    <div class="mb-3">
+      <label for="bookName">Book name</label>
+      <input id="bookName" class="form-control" name="name" ngModel required />
+      <label for="bookColor">Book color</label>
+      <input
+        id="bookColor"
+        class="color-input"
+        name="color"
+        type="color"
+        required
+        ngModel
+      />
+      <label for="rowNumber">Row number</label>
+      <input
+        id="rowNumber"
+        class="form-control"
+        type="number"
+        min="1"
+        max="4"
+        name="rowNumber"
+        ngModel
+        required
+      />
+      <label for="bookComment">Comment (optional)</label>
+      <textarea
+        id="bookComment"
+        class="form-control"
+        name="comment"
+        rows="4"
+        cols="50"
+        ngModel
+      ></textarea>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-outline-secondary"
+      [disabled]="!bookForm.valid"
+    >
+      Add
+    </button>
+  </form>
+</div>

@@ -1,14 +1,14 @@
 import {
   Component,
-  inject,
+  OnDestroy,
+  OnInit,
   signal,
-  TemplateRef,
   WritableSignal,
 } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { ModalsService } from './modals/modals.service';
 
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
-interface Book {
+export interface Book {
   name: string;
   color: string;
   desc: string;
@@ -19,9 +19,8 @@ interface Book {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'virtual bookshelf';
-  private modalService = inject(NgbModal);
   closeResult: WritableSignal<string> = signal('');
   placeholder: Book = {
     name: 'The Silent Grove',
@@ -31,87 +30,27 @@ export class AppComponent {
   show = false;
   heightSizes: number[] = [87, 83, 92, 100, 94];
   heightMargin: number[] = [0, 20.5, 40, 61];
-  bookRows: Book[][] = [
-    [
-      this.placeholder,
-      this.placeholder,
-      this.placeholder,
-      this.placeholder,
-      this.placeholder,
-      this.placeholder,
-      this.placeholder,
-      this.placeholder,
-      this.placeholder,
-      this.placeholder,
-      this.placeholder,
-      this.placeholder,
-      this.placeholder,
-      this.placeholder,
-      this.placeholder,
-    ],
-    [this.placeholder],
-    [this.placeholder],
-    [
-      this.placeholder,
-      this.placeholder,
-      this.placeholder,
-      this.placeholder,
-      this.placeholder,
-      this.placeholder,
-      this.placeholder,
-      this.placeholder,
-      this.placeholder,
-      this.placeholder,
-      this.placeholder,
-      this.placeholder,
-      this.placeholder,
-      this.placeholder,
-      this.placeholder,
-      this.placeholder,
-      this.placeholder,
-      this.placeholder,
-    ],
-  ];
+  bookRows: Book[][] = [];
+  bookList = this.modalsService.bookList;
+  bookSub: Subscription = this.bookList.subscribe();
+  toastSub: Subscription = this.modalsService.showToast.subscribe();
 
-  submitForm(form: any): void {
-    console.log(form.form.value);
-    if (
-      this.bookRows[form.form.value.rowNumber - 1].length ===
-      (form.form.value.rowNumber === 4 ? 18 : 15)
-    )
-      this.show = true;
-    else {
-      this.bookRows[form.form.value.rowNumber - 1].push({
-        name: form.form.value.name,
-        color: form.form.value.color,
-        desc: form.form.value.desc,
-      });
-    }
-    form.reset();
-    this.modalService.dismissAll();
+  constructor(private modalsService: ModalsService) {}
+
+  ngOnInit(): void {
+    this.bookList.subscribe((newData) => {
+      this.bookRows = newData;
+    });
+    this.modalsService.showToast.subscribe((resData: boolean) => {
+      this.show = resData;
+    });
   }
 
-  open(content: TemplateRef<any>) {
-    this.modalService
-      .open(content, { ariaLabelledBy: 'modal-basic-title' })
-      .result.then(
-        (result) => {
-          this.closeResult.set(`Closed with: ${result}`);
-        },
-        (reason) => {
-          this.closeResult.set(`Dismissed ${this.getDismissReason(reason)}`);
-        }
-      );
+  ngOnDestroy(): void {
+    this.bookSub.unsubscribe();
   }
 
-  private getDismissReason(reason: any): string {
-    switch (reason) {
-      case ModalDismissReasons.ESC:
-        return 'by pressing ESC';
-      case ModalDismissReasons.BACKDROP_CLICK:
-        return 'by clicking on a backdrop';
-      default:
-        return `with: ${reason}`;
-    }
+  openModal(type: string) {
+    this.modalsService.open(type);
   }
 }
