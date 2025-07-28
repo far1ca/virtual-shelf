@@ -65,6 +65,25 @@ label {
   position: absolute;
   right: 23%;
   display: flex;
+  background-blend-mode: multiply;
+}
+
+.color-overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+  background-blend-mode: multiply;
+}
+
+.book-container {
+  cursor: pointer;
+  transition: 0.2s ease-in all;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
 }
 
 // Cat styling

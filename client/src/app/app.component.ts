@@ -25,11 +25,36 @@ export class AppComponent {
   closeResult: WritableSignal<string> = signal('');
   placeholder: Book = {
     name: 'The Silent Grove',
-    color: 'darkgreen',
+    color: '#1d6500',
     desc: 'A mysterious tale set in an enchanted forest.',
   };
+  show = false;
+  heightSizes: number[] = [87, 83, 92, 100, 94];
+  heightMargin: number[] = [0, 20.5, 40, 61];
   bookRows: Book[][] = [
     [
+      this.placeholder,
+      this.placeholder,
+      this.placeholder,
+      this.placeholder,
+      this.placeholder,
+      this.placeholder,
+      this.placeholder,
+      this.placeholder,
+      this.placeholder,
+      this.placeholder,
+      this.placeholder,
+      this.placeholder,
+      this.placeholder,
+      this.placeholder,
+      this.placeholder,
+    ],
+    [this.placeholder],
+    [this.placeholder],
+    [
+      this.placeholder,
+      this.placeholder,
+      this.placeholder,
       this.placeholder,
       this.placeholder,
       this.placeholder,
@@ -50,6 +75,18 @@ export class AppComponent {
 
   submitForm(form: any): void {
     console.log(form.form.value);
+    if (
+      this.bookRows[form.form.value.rowNumber - 1].length ===
+      (form.form.value.rowNumber === 4 ? 18 : 15)
+    )
+      this.show = true;
+    else {
+      this.bookRows[form.form.value.rowNumber - 1].push({
+        name: form.form.value.name,
+        color: form.form.value.color,
+        desc: form.form.value.desc,
+      });
+    }
     form.reset();
     this.modalService.dismissAll();
   }

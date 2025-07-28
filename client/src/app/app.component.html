@@ -28,6 +28,17 @@
           required
           ngModel
         />
+        <label for="rowNumber">Row number</label>
+        <input
+          id="rowNumber"
+          class="form-control"
+          type="number"
+          min="1"
+          max="4"
+          name="rowNumber"
+          ngModel
+          required
+        />
         <label for="bookComment">Comment (optional)</label>
         <textarea
           id="bookComment"
@@ -66,28 +77,27 @@
       <div
         class="books-row"
         *ngFor="let row of bookRows; let j = index"
-        [ngStyle]="{ top: (j + 1) * 13 + '%' }"
+        [ngStyle]="{ top: 13 + heightMargin[j] + '%' }"
       >
-        <div *ngFor="let book of row; let i = index">
+        <div
+          style="position: relative"
+          *ngFor="let book of row; let i = index"
+          class="book-container"
+        >
           <img
-            height="100px"
+            [ngStyle]="{ height: j == 3 ? '85px' : '100px' }"
             [src]="'../assets/book' + ((i % 5) + 1) + '.png'"
             alt="Book {{ book.name }}"
           />
+          <div
+            class="color-overlay"
+            [ngStyle]="{
+              'background-color': book.color,
+              height: heightSizes[i % 5] * (j == 3 ? 0.85 : 1) + 'px'
+            }"
+          ></div>
         </div>
       </div>
-      <!--<img
-        src="../assets/book1.png"
-        alt="Book"
-        height="85px"
-        style="position: absolute; top: 12.2%; right: 24%"
-      />
-      <img
-        src="../assets/book2.png"
-        alt="Book"
-        height="85px"
-        style="position: absolute; top: 12.2%; right: 27%"
-      />-->
     </div>
   </div>
   <div class="row-custom">
@@ -102,3 +112,14 @@
     </div>
   </div>
 </div>
+
+<ngb-toast
+  *ngIf="show"
+  header="Error"
+  [autohide]="false"
+  (hidden)="show = false"
+  style="position: absolute; right: 10px; bottom: 10px"
+>
+  Sorry, that row can't hold anymore books. Maybe try deleting one of the books
+  or adding it to a different row.
+</ngb-toast>
