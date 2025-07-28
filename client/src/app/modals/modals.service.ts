@@ -10,10 +10,12 @@ export class ModalsService {
   bookList = new BehaviorSubject<Book[][]>([[], [], [], [], []]);
   showToast = new EventEmitter<boolean>();
   bookRows: Book[][] = [[], [], [], [], []];
+  pos = 0;
 
   constructor(private modalService: NgbModal) {}
 
-  open(type: string, book?: Book) {
+  open(type: string, book?: Book, pos?: number) {
+    if (pos) this.pos = pos;
     switch (type) {
       case 'form': {
         const modalRef = this.modalService.open(FormPopupComponent, {
@@ -50,6 +52,15 @@ export class ModalsService {
           centered: true,
         });
         modalRef.componentInstance.book = book;
+        modalRef.componentInstance.removeCurrent.subscribe(() => {
+          const row = this.pos / 15;
+          this.bookRows = this.bookList.getValue();
+          this.bookRows[row] = this.bookRows[row].slice(
+            this.pos - row * 15,
+            this.pos - row * 15
+          );
+          this.bookList.next(this.bookRows);
+        });
         break;
       }
     }

@@ -21,7 +21,7 @@
           style="position: relative"
           *ngFor="let book of row; let i = index"
           class="book-container"
-          (click)="openModal('bookInfo')"
+          (click)="openModal('bookInfo', book, j * 15 + i)"
         >
           <img
             [ngStyle]="{ height: j == 3 ? '85px' : '100px' }"

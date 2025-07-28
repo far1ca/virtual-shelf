@@ -4,6 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'form-popup',
   templateUrl: 'form-popup.component.html',
+  styleUrls: ['form-popup.component.scss'],
 })
 export class FormPopupComponent {
   constructor(private activeModal: NgbActiveModal) {}

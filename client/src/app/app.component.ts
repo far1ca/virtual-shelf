@@ -50,7 +50,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.bookSub.unsubscribe();
   }
 
-  openModal(type: string) {
-    this.modalsService.open(type);
+  openModal(type: string, book?: Book, pos?: number) {
+    this.modalsService.open(type, book, pos);
   }
 }
