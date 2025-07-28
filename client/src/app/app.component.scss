@@ -1,17 +1,31 @@
 $defaultBodyColor: #e6ac4c;
 $textColor: rgb(228, 225, 225);
 
-.title {
+.title,
+.subtitle {
   font-family: "Playwrite AU QLD";
   color: $textColor;
   text-align: center;
-  font-size: 3em;
 }
 
-.row {
+.title {
+  font-size: 3em;
+  margin-top: 1em;
+}
+
+.subtitle {
+  font-size: 1em;
+  margin-top: 2em;
+  display: block;
+  margin-bottom: 1em;
+  font-weight: 100;
+}
+
+.row-custom {
   width: 100%;
   display: flex;
   justify-content: center;
+  position: relative;
 }
 
 .btn-add {
@@ -22,7 +36,7 @@ $textColor: rgb(228, 225, 225);
   border: none;
   background-color: white;
   border-radius: 15px;
-  padding: 0.3em;
+  padding: 0.5em;
   margin-top: 1em;
   transition: 0.2s ease-in all;
   color: rgb(0, 61, 0);
@@ -31,6 +45,14 @@ $textColor: rgb(228, 225, 225);
     cursor: pointer;
     transform: translateY(-0.1em);
   }
+}
+
+label {
+  margin-top: 0.5em;
+}
+
+.color-input {
+  display: block;
 }
 
 @keyframes yawn {
@@ -160,7 +182,7 @@ $textColor: rgb(228, 225, 225);
   .features {
     //Whiskers
     top: 44px;
-    left: 11px;
+    left: 9px;
     width: 20px;
     height: 1px;
 

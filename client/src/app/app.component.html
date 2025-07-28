@@ -1,12 +1,75 @@
+<ng-template #addModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add book</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form #bookForm="ngForm" (ngSubmit)="submitForm(bookForm)">
+      <div class="mb-3">
+        <label for="bookName">Book name</label>
+        <input
+          id="bookName"
+          class="form-control"
+          name="name"
+          ngModel
+          required
+        />
+        <label for="bookColor">Book color</label>
+        <input
+          id="bookColor"
+          class="color-input"
+          name="color"
+          type="color"
+          required
+          ngModel
+        />
+        <label for="bookComment">Comment (optional)</label>
+        <textarea
+          id="bookComment"
+          class="form-control"
+          name="comment"
+          rows="4"
+          cols="50"
+          ngModel
+        ></textarea>
+      </div>
+      <button
+        type="submit"
+        class="btn btn-outline-secondary"
+        [disabled]="!bookForm.valid"
+      >
+        Add
+      </button>
+    </form>
+  </div>
+</ng-template>
+
 <div style="position: relative">
   <h1 class="title">virtual bookshelf</h1>
-  <div class="row">
-    <img class="bookshelf" src="../assets/bookshelf.png" alt="Bookshelf" />
+  <h2 class="subtitle">
+    make your very own virtual bookshelf by clicking on the button below and
+    adding books you've read!
+  </h2>
+  <div class="row-custom">
+    <div style="position: relative">
+      <img class="bookshelf" src="../assets/bookshelf.png" alt="Bookshelf" />
+      <img
+        src="../assets/books_test.png"
+        alt="Book"
+        height="85px"
+        style="position: absolute; top: 12.2%; right: 24%"
+      />
+    </div>
   </div>
-  <div class="row">
-    <button class="btn-add">add new book</button>
+  <div class="row-custom">
+    <button class="btn-add" (click)="open(addModal)">add new book</button>
   </div>
-  <div style="position: absolute; display: block; top: 85%">
+  <div style="position: absolute; display: block; top: 80%">
     <div style="position: relative">
       <div class="cat body bodySlant earsBasic">
         <div class="face"></div>
