@@ -57,13 +57,37 @@
   </h2>
   <div class="row-custom">
     <div style="position: relative">
-      <img class="bookshelf" src="../assets/bookshelf.png" alt="Bookshelf" />
       <img
-        src="../assets/books_test.png"
+        class="bookshelf"
+        src="../assets/bookshelf.png"
+        alt="Bookshelf"
+        height="600px"
+      />
+      <div
+        class="books-row"
+        *ngFor="let row of bookRows; let j = index"
+        [ngStyle]="{ top: (j + 1) * 13 + '%' }"
+      >
+        <div *ngFor="let book of row; let i = index">
+          <img
+            height="100px"
+            [src]="'../assets/book' + ((i % 5) + 1) + '.png'"
+            alt="Book {{ book.name }}"
+          />
+        </div>
+      </div>
+      <!--<img
+        src="../assets/book1.png"
         alt="Book"
         height="85px"
         style="position: absolute; top: 12.2%; right: 24%"
       />
+      <img
+        src="../assets/book2.png"
+        alt="Book"
+        height="85px"
+        style="position: absolute; top: 12.2%; right: 27%"
+      />-->
     </div>
   </div>
   <div class="row-custom">

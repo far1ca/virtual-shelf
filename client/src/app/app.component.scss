@@ -1,6 +1,8 @@
 $defaultBodyColor: #e6ac4c;
 $textColor: rgb(228, 225, 225);
 
+// Styling for title and button
+
 .title,
 .subtitle {
   font-family: "Playwrite AU QLD";
@@ -47,6 +49,8 @@ $textColor: rgb(228, 225, 225);
   }
 }
 
+// Form styling
+
 label {
   margin-top: 0.5em;
 }
@@ -54,6 +58,16 @@ label {
 .color-input {
   display: block;
 }
+
+// Bookshelf styling
+
+.books-row {
+  position: absolute;
+  right: 23%;
+  display: flex;
+}
+
+// Cat styling
 
 @keyframes yawn {
   32% {

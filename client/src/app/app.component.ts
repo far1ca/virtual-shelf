@@ -23,6 +23,30 @@ export class AppComponent {
   title = 'virtual bookshelf';
   private modalService = inject(NgbModal);
   closeResult: WritableSignal<string> = signal('');
+  placeholder: Book = {
+    name: 'The Silent Grove',
+    color: 'darkgreen',
+    desc: 'A mysterious tale set in an enchanted forest.',
+  };
+  bookRows: Book[][] = [
+    [
+      this.placeholder,
+      this.placeholder,
+      this.placeholder,
+      this.placeholder,
+      this.placeholder,
+      this.placeholder,
+      this.placeholder,
+      this.placeholder,
+      this.placeholder,
+      this.placeholder,
+      this.placeholder,
+      this.placeholder,
+      this.placeholder,
+      this.placeholder,
+      this.placeholder,
+    ],
+  ];
 
   submitForm(form: any): void {
     console.log(form.form.value);
