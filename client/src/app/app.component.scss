@@ -1,6 +1,29 @@
 $defaultBodyColor: #e6ac4c;
 $textColor: rgb(228, 225, 225);
 
+// Styling for login
+
+.navbar {
+  position: absolute;
+  right: 30px;
+  z-index: 1;
+}
+
+.lgn-btn {
+  font-family: "Playwrite AU QLD";
+  color: green;
+  background-color: white;
+  border-radius: 15px;
+  padding: 0.5em;
+  border: none;
+  transition: 0.2s ease-in all;
+
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-5px);
+  }
+}
+
 // Styling for title and button
 
 .title,

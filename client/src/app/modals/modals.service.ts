@@ -4,6 +4,7 @@ import { FormPopupComponent } from './form-popup/form-popup.component';
 import { BookPopupComponent } from './book-popup/book-popup.component';
 import { Book } from '../app.component';
 import { BehaviorSubject } from 'rxjs';
+import { LoginPopupComponent } from './login-popup/login-popup.component';
 
 @Injectable({ providedIn: 'root' })
 export class ModalsService {
@@ -62,6 +63,12 @@ export class ModalsService {
           this.bookList.next(this.bookRows);
         });
         break;
+      }
+      case 'login': {
+        const modalRef = this.modalService.open(LoginPopupComponent, {
+          ariaLabelledBy: 'login-form',
+          centered: true,
+        });
       }
     }
   }
