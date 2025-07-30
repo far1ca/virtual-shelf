@@ -37,43 +37,48 @@
   </h2>
   <div class="row-custom">
     <div style="position: relative">
-      <img
-        class="bookshelf"
-        src="../assets/bookshelf.png"
-        alt="Bookshelf"
-        height="600px"
-      />
-      <div
-        class="books-row"
-        *ngFor="let row of bookRows; let j = index"
-        [ngStyle]="{ top: 13 + heightMargin[j] + '%' }"
-      >
+      <img class="bookshelf" src="../assets/bookshelf.png" alt="Bookshelf" />
+      <div class="top-mover">
         <div
-          style="position: relative"
-          *ngFor="let book of row; let i = index"
-          class="book-container"
-          (click)="openModal('bookInfo', book, j * 15 + i)"
+          class="books-row"
+          *ngFor="let row of bookRows; let j = index"
+          [ngStyle]="{ top: heightMargin[j] + '%' }"
         >
-          <img
-            [ngStyle]="{ height: j == 3 ? '85px' : '100px' }"
-            [src]="'../assets/book' + ((i % 5) + 1) + '.png'"
-            alt="Book {{ book.name }}"
-          />
           <div
-            class="color-overlay"
-            [ngStyle]="{
-              'background-color': book.color,
-              height: heightSizes[i % 5] * (j == 3 ? 0.85 : 1) + 'px'
+            style="position: relative"
+            *ngFor="let book of row; let i = index"
+            class="book-container"
+            [ngClass]="{
+              'book-container-big': j !== 3,
+              'book-container-small': j == 3
             }"
-          ></div>
+            (click)="openModal('bookInfo', book, j * 15 + i)"
+          >
+            <img
+              class="book-img"
+              [ngClass]="{
+                'h-100': j !== 3,
+                'h-85': j === 3
+              }"
+              [src]="'../assets/book' + ((i % 5) + 1) + '.png'"
+              alt="Book {{ book.name }}"
+            />
+            <div
+              class="color-overlay"
+              [ngStyle]="{
+                'background-color': book.color,
+                height: heightSizes[i % 5] * (j == 3 ? 0.85 : 1) + '%'
+              }"
+            ></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="row-custom">
+  <div class="row-custom pb-2">
     <button class="btn-add" (click)="openModal('form')">add new book</button>
   </div>
-  <div style="position: absolute; display: block; top: 80%">
+  <div class="cat-container">
     <div style="position: relative">
       <div class="cat body bodySlant earsBasic">
         <div class="face"></div>

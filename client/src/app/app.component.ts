@@ -24,7 +24,7 @@ export class AppComponent implements OnInit, OnDestroy {
   };
   show = false;
   heightSizes: number[] = [87, 83, 92, 100, 94];
-  heightMargin: number[] = [0, 20.5, 40, 61];
+  heightMargin: number[] = [0, 20.5, 40, 58];
   bookRows: Book[][] = [];
   bookSub: Subscription = this.authService.user.subscribe();
   toastSub: Subscription = this.modalsService.showToast.subscribe();
@@ -67,6 +67,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   logout() {
+    window.location.href = 'http://localhost:4200';
     this.authService.user.next({
       _id: '',
       username: '',

@@ -69,6 +69,7 @@ $greenColor: #6c824c;
 .subtitle {
   font-family: "Playwrite AU QLD";
   color: $textColor;
+  padding: 0 0.5em;
   text-align: center;
 }
 
@@ -123,11 +124,15 @@ label {
 
 // Bookshelf styling
 
+.bookshelf {
+  height: 600px;
+}
+
 .books-row {
-  position: absolute;
-  right: 23%;
   display: flex;
   background-blend-mode: multiply;
+  position: absolute;
+  right: 23%;
 }
 
 .color-overlay {
@@ -142,11 +147,21 @@ label {
 
 .book-container {
   cursor: pointer;
+  display: flex;
+  align-items: flex-end;
   transition: 0.2s ease-in all;
+  height: 100px;
 
   &:hover {
     transform: translateY(-5px);
   }
+}
+
+.top-mover {
+  position: absolute;
+  top: 13%;
+  height: 100%;
+  width: 100%;
 }
 
 // Cat styling
@@ -236,6 +251,12 @@ label {
   }
 }
 
+.cat-container {
+  position: absolute;
+  display: block;
+  top: 80%;
+}
+
 .cat {
   top: 60px;
   left: 50px;
@@ -312,4 +333,42 @@ label {
       border-top: 0;
     }
   }
+}
+
+@media screen and (max-width: 900px) {
+  .navbar {
+    position: static !important;
+    width: 100%;
+    justify-content: center;
+    margin-top: 1em;
+  }
+  .user-dropdown {
+    left: 37%;
+  }
+  .title {
+    margin-top: 0.5em;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .cat-container {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .bookshelf {
+    width: 100% !important;
+    height: auto;
+  }
+  .book-container {
+    height: 17vw;
+  }
+  .top-mover {
+    top: 13vw;
+  }
+}
+
+.h-85 {
+  height: 85%;
 }
