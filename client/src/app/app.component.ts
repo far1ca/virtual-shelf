@@ -82,6 +82,10 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   openModal(type: string, book?: Book, pos?: number) {
+    if (type !== 'login' && !this.loggedIn) {
+      this.modalsService.open('login');
+      return;
+    }
     this.modalsService.open(type, book, pos);
   }
 }

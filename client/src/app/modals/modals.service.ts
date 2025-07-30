@@ -58,12 +58,9 @@ export class ModalsService {
         });
         modalRef.componentInstance.book = book;
         modalRef.componentInstance.removeCurrent.subscribe(() => {
-          const row = this.pos / 15;
+          const row = Math.floor(this.pos / 15);
           this.bookRows = this.bookList.getValue();
-          this.bookRows[row] = this.bookRows[row].slice(
-            this.pos - row * 15,
-            this.pos - row * 15
-          );
+          this.bookRows[row].splice(this.pos - row * 15, 1);
           this.authService.updateUserBooks(this.bookRows);
         });
         break;
