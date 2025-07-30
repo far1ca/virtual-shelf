@@ -28,6 +28,10 @@ export class AppComponent implements OnInit, OnDestroy {
   bookRows: Book[][] = [];
   bookSub: Subscription = this.authService.user.subscribe();
   toastSub: Subscription = this.modalsService.showToast.subscribe();
+  loggedIn: boolean = false;
+  showDropdown: boolean = false;
+  username = '';
+  bookNumber = 0;
 
   constructor(
     private modalsService: ModalsService,
@@ -45,11 +49,30 @@ export class AppComponent implements OnInit, OnDestroy {
     });
 
     this.authService.user.subscribe((newData) => {
+      if (newData._id === '') {
+        this.loggedIn = this.showDropdown = false;
+      } else this.loggedIn = true;
+      this.username = newData.username;
+      this.bookNumber =
+        newData.books[0].length +
+        newData.books[1].length +
+        newData.books[2].length +
+        newData.books[3].length;
       this.bookRows = newData.books;
       this.modalsService.bookList.next(this.bookRows);
     });
     this.modalsService.showToast.subscribe((resData: boolean) => {
       this.show = resData;
+    });
+  }
+
+  logout() {
+    this.authService.user.next({
+      _id: '',
+      username: '',
+      email: '',
+      googleId: '',
+      books: [[], [], [], []],
     });
   }
 
