@@ -2,13 +2,6 @@ import express from "express";
 import passport from "passport";
 const router = express.Router();
 
-router.get("/login", (req, res) => {
-  if (req.user) {
-    res.redirect("/profile");
-  }
-  res.render("login");
-});
-
 router.get(
   "/google",
   passport.authenticate("google", {

@@ -4,14 +4,17 @@ const router = express.Router();
 // middleware to check if the user is logged in
 const checkAuth = (req: Request, res: Response, next: NextFunction) => {
   if (!req.user) {
-    res.redirect("/auth/login");
+    res.redirect("/auth/google");
   } else {
     next();
   }
 };
 
 router.get("/", checkAuth, (req, res) => {
-  res.render("profile", { user: req.user });
+  res.status(200).json({
+    success: true,
+    user: req.user,
+  });
 });
 
 export default router;

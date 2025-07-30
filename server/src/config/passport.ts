@@ -5,7 +5,7 @@ import { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } from "../utils/secrets";
 const GoogleStrategy = passportGoogle.Strategy;
 
 passport.serializeUser((user, done) => {
-  done(null, user.googleId);
+  done(null, user.id);
 });
 
 passport.deserializeUser(async (id, done) => {
@@ -29,6 +29,7 @@ passport.use(
           googleId: profile.id,
           username: profile.displayName,
           email: profile.emails?.[0].value,
+          books: [],
         });
         if (newUser) {
           done(null, newUser);
