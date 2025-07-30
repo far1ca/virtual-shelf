@@ -5,6 +5,7 @@ import { BookPopupComponent } from './book-popup/book-popup.component';
 import { Book } from '../app.component';
 import { BehaviorSubject } from 'rxjs';
 import { LoginPopupComponent } from './login-popup/login-popup.component';
+import { AuthService } from './login-popup/auth.service';
 
 @Injectable({ providedIn: 'root' })
 export class ModalsService {
@@ -13,7 +14,10 @@ export class ModalsService {
   bookRows: Book[][] = [[], [], [], [], []];
   pos = 0;
 
-  constructor(private modalService: NgbModal) {}
+  constructor(
+    private modalService: NgbModal,
+    private authService: AuthService
+  ) {}
 
   open(type: string, book?: Book, pos?: number) {
     if (pos) this.pos = pos;
@@ -41,7 +45,7 @@ export class ModalsService {
                 color: form.form.value.color,
                 desc: form.form.value.desc,
               });
-              this.bookList.next(this.bookRows);
+              this.authService.updateUserBooks(this.bookRows);
             }
           }
         );
@@ -60,12 +64,12 @@ export class ModalsService {
             this.pos - row * 15,
             this.pos - row * 15
           );
-          this.bookList.next(this.bookRows);
+          this.authService.updateUserBooks(this.bookRows);
         });
         break;
       }
       case 'login': {
-        const modalRef = this.modalService.open(LoginPopupComponent, {
+        this.modalService.open(LoginPopupComponent, {
           ariaLabelledBy: 'login-form',
           centered: true,
         });

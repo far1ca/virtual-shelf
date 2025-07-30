@@ -16,17 +16,6 @@ export class LoginPopupComponent {
 
   triggerGoogleSignIn() {
     this.auth.googleLogin();
-    /*.subscribe({
-      next: (response) => {
-        console.log('Google login successful:', response);
-        this.loginSuccess.emit(response);
-        this.close();
-      },
-      error: (error) => {
-        console.error('Google login failed:', error);
-        // Handle error appropriately, e.g., show a notification
-      },
-    });*/
   }
 
   close(): void {

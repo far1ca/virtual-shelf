@@ -29,7 +29,7 @@ passport.use(
           googleId: profile.id,
           username: profile.displayName,
           email: profile.emails?.[0].value,
-          books: [],
+          books: [[], [], [], []],
         });
         if (newUser) {
           done(null, newUser);
