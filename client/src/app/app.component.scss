@@ -1,5 +1,6 @@
 $defaultBodyColor: #e6ac4c;
 $textColor: rgb(228, 225, 225);
+$greenColor: #6c824c;
 
 // Styling for navbar
 
@@ -11,7 +12,7 @@ $textColor: rgb(228, 225, 225);
 
 .lgn-btn {
   font-family: "Playwrite AU QLD";
-  color: green;
+  color: $greenColor;
   background-color: white;
   border-radius: 15px;
   padding: 0.8em;
@@ -36,7 +37,7 @@ $textColor: rgb(228, 225, 225);
 }
 
 .user-info {
-  color: green;
+  color: $greenColor;
   font-family: "Playwrite AU QLD";
 }
 
