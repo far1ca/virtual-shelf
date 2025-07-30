@@ -22,6 +22,4 @@ const userSchema = new Schema<UserDocument>({
   books: [[bookSchema]],
 });
 
-const User = mongoose.model<UserDocument>("User", userSchema);
-
-export default User;
+export default mongoose.model<UserDocument>("User", userSchema);

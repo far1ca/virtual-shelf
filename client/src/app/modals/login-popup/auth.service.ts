@@ -8,7 +8,7 @@ export class AuthService {
 
   baseUrl = 'http://localhost:3333';
 
-  googleLogin(token: string): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/google-login`, { token });
+  googleLogin() {
+    window.location.href = 'http://localhost:3333/auth/google';
   }
 }

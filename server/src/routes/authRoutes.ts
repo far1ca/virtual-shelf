@@ -10,7 +10,8 @@ router.get(
 );
 
 router.get("/google/redirect", passport.authenticate("google"), (req, res) => {
-  res.redirect("/profile");
+  if (req.user) res.redirect(`http://localhost:4200?id=${req.user.id}`);
+  else res.redirect("http://localhost:4200");
 });
 
 export default router;
