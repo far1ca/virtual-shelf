@@ -1,0 +1,13 @@
+{
+  "name": "virtual-shelf",
+  "private": true,
+  "scripts": {
+    "build": "npm --prefix server run build && npm --prefix client run build",
+    "start": "npm --prefix server run start & npm --prefix client run start",
+    "prod": "npm run build && npm run start"
+  },
+  "workspaces": [
+    "server",
+    "client"
+  ]
+}
