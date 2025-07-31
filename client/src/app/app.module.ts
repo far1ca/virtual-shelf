@@ -10,12 +10,14 @@ import { ModalsService } from './modals/modals.service';
 import { FormPopupComponent } from './modals/form-popup/form-popup.component';
 import { BookPopupComponent } from './modals/book-popup/book-popup.component';
 import { LoginPopupComponent } from './modals/login-popup/login-popup.component';
+import { CatComponent } from './cat/cat.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FormPopupComponent,
     BookPopupComponent,
+    CatComponent,
     LoginPopupComponent,
   ],
   imports: [
