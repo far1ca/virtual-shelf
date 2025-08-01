@@ -20,7 +20,7 @@ interface UserResponseData {
 export class AuthService {
   constructor(private http: HttpClient) {}
 
-  baseUrl = 'http://localhost:3333';
+  baseUrl = 'http://virtual-shelf.far1ca.hackclub.app';
   user = new BehaviorSubject<UserData>({
     _id: '',
     username: '',
@@ -30,7 +30,7 @@ export class AuthService {
   });
 
   googleLogin() {
-    window.location.href = 'http://localhost:3333/auth/google';
+    window.location.href = this.baseUrl + '/auth/google';
   }
 
   getUserData(userId: string): void {

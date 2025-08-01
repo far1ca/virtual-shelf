@@ -14,7 +14,7 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: "http://localhost:4200",
+    origin: "http://virtual-shelf.far1ca.hackclub.app/",
     credentials: true, // if you use cookies or Authorization headers
   })
 );
