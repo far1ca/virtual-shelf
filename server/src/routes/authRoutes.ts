@@ -10,8 +10,9 @@ router.get(
 );
 
 router.get("/google/redirect", passport.authenticate("google"), (req, res) => {
-  if (req.user) res.redirect(`http://localhost:4200?id=${req.user.id}`);
-  else res.redirect("http://localhost:4200");
+  if (req.user)
+    res.redirect(`https://virtual-shelf-xi.vercel.app?id=${req.user.id}`);
+  else res.redirect("https://virtual-shelf-xi.vercel.app");
 });
 
 export default router;
