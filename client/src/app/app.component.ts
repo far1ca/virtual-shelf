@@ -67,7 +67,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   logout() {
-    window.location.href = 'http://localhost:4200';
+    window.location.href = 'https://virtual-shelf-xi.vercel.app';
     this.authService.user.next({
       _id: '',
       username: '',
