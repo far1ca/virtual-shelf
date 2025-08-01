@@ -21,4 +21,9 @@ export class LoginPopupComponent {
   close(): void {
     this.activeModal.dismiss();
   }
+
+  triggerGuestMode(): void {
+    this.auth.activateGuestMode();
+    this.close();
+  }
 }

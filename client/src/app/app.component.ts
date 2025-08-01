@@ -40,6 +40,8 @@ export class AppComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.authService.checkGuestMode();
+
     this.route.queryParamMap.subscribe((params) => {
       const userId = params.get('id');
       if (!userId) {
@@ -67,6 +69,10 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   logout() {
+    if (this.authService.guestMode) {
+      localStorage.setItem('guestMode', JSON.stringify(false));
+      this.authService.guestMode = false;
+    }
     window.location.href = 'https://virtual-shelf-xi.vercel.app';
     this.authService.user.next({
       _id: '',

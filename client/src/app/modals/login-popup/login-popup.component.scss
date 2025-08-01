@@ -2,4 +2,23 @@
   border: none;
   border-radius: 10px;
   padding: 1em;
+  transition: all 0.3s ease;
+
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-5px);
+  }
+}
+
+.guest-btn {
+  border: none;
+  padding: none;
+  text-decoration: underline;
+  background-color: transparent;
+  transition: all 0.3s ease;
+
+  &:hover {
+    cursor: pointer;
+    color: grey;
+  }
 }
