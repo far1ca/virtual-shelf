@@ -14,7 +14,7 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: "http://virtual-shelf.far1ca.hackclub.app/",
+    origin: "https://virtual-shelf-xi.vercel.app",
     credentials: true, // if you use cookies or Authorization headers
   })
 );

@@ -20,7 +20,7 @@ interface UserResponseData {
 export class AuthService {
   constructor(private http: HttpClient) {}
 
-  baseUrl = 'http://virtual-shelf.far1ca.hackclub.app';
+  baseUrl = 'https://virtual-shelf.far1ca.hackclub.app';
   user = new BehaviorSubject<UserData>({
     _id: '',
     username: '',
